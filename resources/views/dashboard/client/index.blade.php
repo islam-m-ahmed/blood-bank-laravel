@@ -10,14 +10,39 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-
+                    <div>
+                        {{--select to search with blood types--}}
+                        <label class="ml-4">filter...</label>
+                        <form action="{{route('client.index')}}" class="d-inline-block col-sm-5 ml-2" method="get" enctype="multipart/form-data" >
+                            <div class="row mt-2 ">
+                                <select class="form-control d-inline-block  "  placeholder="search with blood types"  onchange="this.form.submit()" name="select">
+                                    <option value="" class="form-select" disabled selected  >search with blood types</option>
+                                    @foreach($blood_types as $item)
+                                        <option @if(request()->select == $item->id)   selected @endif class="form-select" value="{{$item->id}}">
+                                            {{$item->name}}
+                                        </option>
+                                    @endforeach
+                                        <option @if(request()->select == "all")  selected @endif class="form-select" value="all">all</option>
+                                </select>
+                            </div>
+                        </form>
+                        <label class="ml-4">search....</label>
+                        <form style="margin-left: 0" action="{{route('client.index')}}" class="d-inline-block col-sm-5 " method="get" enctype="multipart/form-data" >
+                            <div class="row mt-2 ml-3 p-0">
+                                <input type="text" class="form-control" name="search" placeholder="search with name or phone or city or email">
+                                <button  aria-hidden="true" id="search_btn" hidden   type="submit" class="btn  btn-danger col-1 mr-5">
+                                    filter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                     <div class="card-body">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="example1" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
-{{--                                <th scope="col">Phone</th>--}}
+                                <th scope="col">Phone</th>
                                 <th scope="col">Blood Type</th>
 {{--                                <th scope="col">Date Of Birth</th>--}}
                                 <th scope="col">City</th>
@@ -31,7 +56,7 @@
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->email}}</td>
-{{--                                    <td>{{$item->phone}}</td>--}}
+                                    <td>{{$item->phone}}</td>
                                     <td>{{$item->bloodType->name}}</td>
 {{--                                    <td>{{$item->date_of_b}}</td>--}}
                                     <td>{{$item->city->name}}</td>
@@ -60,7 +85,7 @@
                                                 @csrf
                                                 @method('delete')
 
-                                                <button class="btn btn-danger d-inline-block" onclick="confirm('{{ __("Are you sure you want to delete this committee?") }}') ? this.parentElement.submit() : ''">delete</button>
+                                                <button class="btn btn-danger d-inline-block" onclick="return confirm('Are you sure you want to delete this client?') ">delete</button>
                                             </form>
                                         </div>
                                     </td>

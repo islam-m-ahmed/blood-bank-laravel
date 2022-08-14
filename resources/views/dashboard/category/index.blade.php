@@ -34,7 +34,7 @@
                                                 @csrf
                                                 @method('delete')
 
-                                                <button class="btn btn-danger d-inline-block" onclick="confirm('{{ __("Are you sure you want to delete this committee?") }}') ? this.parentElement.submit() : ''">delete</button>
+                                                <button class="btn btn-danger d-inline-block" onclick="return confirm('Are you sure you want to delete this category?') ">delete</button>
                                             </form>
                                         </div>
                                     </td>

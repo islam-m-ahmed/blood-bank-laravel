@@ -15,7 +15,14 @@
     <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
-{{--    datatable--}}
+{{--   rtl--}}
+<!-- template rtl version if i want to write arabic-->
+{{--    <link rel="stylesheet" href="{{asset('dist/css/bootstrap-rtl.min.css')}}">--}}
+    <!-- template rtl version -->
+    <link rel="stylesheet" href="{{asset('dist/css/custom-style.css')}}">
+{{--    select two--}}
+    <link href="{{asset('select2/css/select2.min.css')}}" rel="stylesheet" />
+
 
 
 </head>
@@ -69,10 +76,28 @@
 {{--data table--}}
     <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+{{--select2--}}
+<script src="{{asset('select2/js/select2.min.js')}}"></script>
 
     <script>
         $(document).ready(function () {
             $('#example').DataTable();
+        });
+        //
+        $(".search").keydown(function(e){
+            if (e.keyCode == 13) {
+                $("#search_btn").click();
+            }
+
+        });
+        //
+            $("#select_all").click(function(){
+            $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+
+        });
+            //
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
         });
     </script>
 </body>

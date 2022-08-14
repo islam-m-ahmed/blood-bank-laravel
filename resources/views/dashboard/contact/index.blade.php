@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    cities
+    contacts
 @endsection
 @section('content')
 
@@ -10,33 +10,31 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header" style="background-color: white">
-                        <a href="{{route('city.create')}}" class="btn btn-primary" style="float: right">Add City</a>
-                    </div>
                     <div class="card-body">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Governorates</th>
-                                <th scope="col">Controls</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($cities as $item)
+                            @foreach ($contacts as $item)
                                 <tr>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->governorate->name}}</td>
+                                    <td>{{$item->client->name}}</td>
+                                    <td>{{$item->client->email}}</td>
+                                    <td>{{$item->title}}</td>
+                                    <td>{{$item->message}}</td>
                                     <td>
                                         <div>
-                                            <a href="{{route('city.edit', $item->id)}}" class="d-inline-block" >
-                                                <button class="btn btn-info d-inline-block">edit</button>
-                                            </a>
-                                            <form action="{{route('city.destroy', $item->id)}}" class="d-inline-block" method="post" >
+                                            <form action="{{route('contact.destroy', $item->id)}}" class="d-inline-block" method="post" >
                                                 @csrf
                                                 @method('delete')
 
-                                                <button class="btn btn-danger d-inline-block" onclick="return confirm('Are you sure you want to delete this city?') ">delete</button>
+                                                <button class="btn btn-danger d-inline-block" onclick="return confirm('Are you sure you want to delete this contact?') ">delete</button>
                                             </form>
                                         </div>
                                     </td>

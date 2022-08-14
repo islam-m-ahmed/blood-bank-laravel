@@ -7,9 +7,14 @@
 
     @include('includes.message')
     <section class="content">
-        <div class="row " >
+        <div class="row position-relative" >
             <div class="card col-10 m-auto card-primary">
-                <div class="card-header">
+                <div class="card-header position-relative"style="
+                    left: -7px;
+
+                    width: 63.7em;
+                    margin: auto;"
+                >
                     <h3 class="card-title">details</h3>
                 </div>
                 <div class="card-body">

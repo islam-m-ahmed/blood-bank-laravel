@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard.home');
+})->middleware(['auth']);
 //
 //Route::get('api-test', function (){
 //    $posts = \App\Models\Post::all();
@@ -31,7 +31,7 @@ Auth::routes();
 
 Route::prefix('dashboard')->middleware(['auth'])->namespace('Dashboard')->group(function (){
     //dashboard
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //governorate
     Route::resource('governorate','GovernorateController');
     //cities
@@ -45,4 +45,15 @@ Route::prefix('dashboard')->middleware(['auth'])->namespace('Dashboard')->group(
     Route::get('client/show/{id}','ClientController@show')->name('client.show');
     Route::delete('client/{id}','ClientController@destroy')->name('client.destroy');
     Route::get('status/{id}/{status}','ClientController@status')->name('client.status');
+    //contacts
+    Route::resource('contact','ContactController');
+    //settings
+    Route::get('setting/edit','SettingController@edit')->name('setting.edit');
+    Route::put('setting/update','SettingController@update')->name('setting.update');
+    //donation request controller
+    Route::resource('donation_request','DonationRequestController');
+    // roles
+    Route::resource('role','RoleController');
+    //users
+    Route::resource('user','UserController');
 });

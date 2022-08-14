@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{url('#')}}" class="brand-link text-center text-bold">
+    <a href="{{url('dashboard')}}" class="brand-link text-center text-bold">
         <span class="brand-text font-weight-light">BloodBank</span>
     </a>
 
@@ -54,6 +54,7 @@
                 {{--                        </ul>--}}
                 {{--                    </li>--}}
                 {{--                    single --}}
+
                 <li class="nav-item">
                     <a href="{{route('governorate.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -91,6 +92,54 @@
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             clients
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('donation_request.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            donation requests
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('contact.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            contacts
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('setting.edit')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            settings
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('role.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            roles
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('user.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            users
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('user.edit',auth()->user()->id)}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            change password
                         </p>
                     </a>
                 </li>

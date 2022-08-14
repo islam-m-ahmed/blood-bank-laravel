@@ -13,13 +13,13 @@ class DonationRequest extends Model
         'bags_num','hospital_address');
 
     public function city()
-    {
+{
         return $this->belongsTo('App\Models\City', 'city_id');
     }
 
 
     public function bloodType()
-    {
+{
         return $this->belongsTo('App\Models\BloodType', 'blood_type_id');
     }
 
