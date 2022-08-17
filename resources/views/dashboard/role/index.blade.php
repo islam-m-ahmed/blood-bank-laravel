@@ -34,7 +34,7 @@
                                         @endforeach
                                     </td>
                                     <td>
-                                        <div>
+                                        <div style="min-width: 100px">
                                             <a href="{{route('role.edit', $item->id)}}" class="d-inline-block" >
                                                 <button class="btn btn-info d-inline-block"><i class="fa fa-edit"></i></button>
                                             </a>

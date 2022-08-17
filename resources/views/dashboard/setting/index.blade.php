@@ -17,7 +17,7 @@
                                 <div class="form-group">
                                     <label for="name">facebook</label>
                                     <input class="form-control @error('fb_link') is-invalid @enderror" type="text"
-                                           value="{{old('fb_link',$setting->fb_link)}} "
+                                           value="@if(!empty($setting)){{old('fb_link',$setting->fb_link)}} @endif"
                                            id="name" name="fb_link" required>
                                     @error('fb_link')
                                     <span class="invalid-feedback" contact="alert">
@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                     <label for="name">twitter</label>
                                     <input class="form-control @error('tw_link') is-invalid @enderror" type="text"
-                                           value="{{old('tw_link',$setting->tw_link)}} "
+                                           value="@if(!empty($setting)){{old('tw_link',$setting->tw_link)}} @endIf"
                                            id="name" name="tw_link" required>
                                     @error('tw_link')
                                     <span class="invalid-feedback" contact="alert">
@@ -38,7 +38,7 @@
                                 </div> <div class="form-group">
                                     <label for="name">instagram </label>
                                     <input class="form-control @error('insta_link') is-invalid @enderror" type="text"
-                                           value="{{old('insta_link',$setting->insta_link)}} "
+                                           value="@if(!empty($setting)){{old('insta_link',$setting->insta_link)}} @endIf"
                                            id="name" name="insta_link" required>
                                     @error('insta_link')
                                     <span class="invalid-feedback" contact="alert">
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label for="name">youtube</label>
                                     <input class="form-control @error('youtube_link') is-invalid @enderror" type="text"
-                                           value="{{old('youtube_link',$setting->youtube_link)}} "
+                                           value="@if(!empty($setting)){{old('youtube_link',$setting->youtube_link)}} @endIf"
                                            id="name" name="youtube_link" required>
                                     @error('youtube_link')
                                     <span class="invalid-feedback" contact="alert">
@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label for="name">whats app</label>
                                     <input class="form-control @error('phone') is-invalid @enderror" type="text"
-                                           value="{{old('phone',$setting->phone)}} "
+                                           value="@if(!empty($setting)){{old('phone',$setting->phone)}} @endIf"
                                            id="name" name="phone" required>
                                     @error('phone')
                                     <span class="invalid-feedback" contact="alert">
@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     <label for="name">phone</label>
                                     <input class="form-control @error('phone') is-invalid @enderror" type="text"
-                                           value="{{old('phone',$setting->phone)}} "
+                                           value="@if(!empty($setting)){{old('phone',$setting->phone)}} @endIf"
                                            id="name" name="phone" required>
                                     @error('phone')
                                     <span class="invalid-feedback" contact="alert">
@@ -82,7 +82,7 @@
                                 <div class="form-group">
                                     <label for="name">email</label>
                                     <input class="form-control @error('email') is-invalid @enderror" type="text"
-                                           value="{{old('email',$setting->email)}} "
+                                           value="@if(!empty($setting)){{old('email',$setting->email)}} @endIf"
                                            id="name" name="email" required>
                                     @error('email')
                                     <span class="invalid-feedback" contact="alert">
@@ -92,7 +92,7 @@
                                 </div> <div class="form-group">
                                     <label for="name">about app</label>
                                     <input class="form-control @error('about_app') is-invalid @enderror" type="text"
-                                           value="{{old('about_app',$setting->about_app)}} "
+                                           value="@if(!empty($setting)){{old('about_app',$setting->about_app)}} @endIf"
                                            id="name" name="about_app" required>
                                     @error('about_app')
                                     <span class="invalid-feedback" contact="alert">
@@ -102,7 +102,7 @@
                                 </div> <div class="form-group">
                                     <label for="name">notification text</label>
                                     <input class="form-control @error('notification_settings_text') is-invalid @enderror" type="text"
-                                           value="{{old('notification_settings_text',$setting->notification_settings_text)}} "
+                                           value="@if(!empty($setting)){{old('notification_settings_text',$setting->notification_settings_text)}} @endIf"
                                            id="name" name="notification_settings_text" required>
                                     @error('notification_settings_text')
                                     <span class="invalid-feedback" contact="alert">

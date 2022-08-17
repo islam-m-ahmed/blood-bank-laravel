@@ -37,8 +37,13 @@ class SettingController extends Controller
         ];
         $this->validate($request,$message);
         //
+
         $setting = Setting::first();
-        $setting->update($request->all());
+        if ($setting){
+            $setting->update($request->all());
+        }else{
+            Setting::create($request->all());
+        }
         return back()->withStatus('settings updated successfully');
     }
 

@@ -37,7 +37,7 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table table-striped table-bordered table-responsive" style="width:100%">
+                        <table id="example1" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                             <tr>
 {{--                                <th scope="col">By Who</th>--}}

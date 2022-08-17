@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('dashboard.home');
-})->middleware(['auth']);
 //
 //Route::get('api-test', function (){
 //    $posts = \App\Models\Post::all();
@@ -26,10 +22,23 @@ Route::get('/', function () {
 //    ];
 //    return $response;
 //});
+Route::group(['namespace' => 'front','middleware'=>'auth:client-web'],function(){
+    //home page
+    Route::get('/','HomeController@index');
+    Route::get('/about_us','HomeController@aboutUs');
+    Route::get('/article/{id}','HomeController@article')->name('article');
+    //details of one donation request
+    Route::get('donation_request/{id}','HomeController@donationRequest')->name('donation_request');
+    Route::get('donation_requests','HomeController@donationRequests')->name('donation_requests');
+    //toggle
+    Route::post('toggle_favourite','HomeController@toggleFavourite')->name('toggleFavourite');
+
+});
 
 Auth::routes();
 
-Route::prefix('dashboard')->middleware(['auth'])->namespace('Dashboard')->group(function (){
+//dashboard admin
+Route::prefix('dashboard')->middleware(['auth','check-permission'])->namespace('Dashboard')->group(function (){
     //dashboard
     Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //governorate
