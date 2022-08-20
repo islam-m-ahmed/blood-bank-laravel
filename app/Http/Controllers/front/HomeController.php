@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Methods\Helper;
 use App\Models\City;
 use App\Models\Client;
+use App\Models\Contact;
 use App\Models\DonationRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -15,10 +16,23 @@ class HomeController extends Controller
     //
     use Helper;
     public function index(Request $request){
-        $client = Client::first();
-        auth('client-web')->login($client);
-
+        //auth with client
+//        $client = Client::first();
+//        auth('client-web')->login($client);
+        //POSTS
         $posts = Post::all()->take(6);
+        // to check if favourite or not
+        foreach ($posts as $post){
+
+            if (auth('client-web')->user()){
+                $client = auth('client-web')->user()->id;
+                if ($post->clients()->where('client_id',$client)->first()){
+                    $post->is_favourite = true;
+                };
+            }
+
+        }
+        //DONATION REQUEST
         $donations = DonationRequest::where(function ($q)use($request){
             if ($request->has('search_blood_type')){
                 $q->where('blood_type_id',$request->search_blood_type);
@@ -65,6 +79,30 @@ class HomeController extends Controller
         $favourite = $request->user()->posts()->toggle($request->post_id);
         return $this->responseJson(1,'success',$favourite);
     }
+
+    public function contact() {
+
+        return view('front.contact');
+    }
+
+    public function contactSend(Request $request) {
+
+        $rules = [
+            'title' => 'required',
+            'message' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+       Contact::create([
+            'title' => $request->title,
+            'message' => $request->message,
+            'client_id' => $request->id
+        ]);
+
+        return back()->withStatus('message send successfully');
+    }
+
 
 
 }

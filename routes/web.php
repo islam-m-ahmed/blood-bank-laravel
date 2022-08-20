@@ -22,16 +22,29 @@ use Illuminate\Support\Facades\Route;
 //    ];
 //    return $response;
 //});
-Route::group(['namespace' => 'front','middleware'=>'auth:client-web'],function(){
+Route::group(['namespace' => 'front'],function(){
     //home page
-    Route::get('/','HomeController@index');
+    Route::get('/','HomeController@index')->name('home');
     Route::get('/about_us','HomeController@aboutUs');
     Route::get('/article/{id}','HomeController@article')->name('article');
     //details of one donation request
     Route::get('donation_request/{id}','HomeController@donationRequest')->name('donation_request');
     Route::get('donation_requests','HomeController@donationRequests')->name('donation_requests');
     //toggle
-    Route::post('toggle_favourite','HomeController@toggleFavourite')->name('toggleFavourite');
+    Route::post('toggle_favourite','HomeController@toggleFavourite')->name('toggleFavourite')->middleware('auth:client-web');
+    //register
+    Route::get('client_register','AuthController@clientRegister')->name('client.register');
+    Route::post('client_save','AuthController@clientSave')->name('client.save');
+    //login
+    Route::get('/client_login', 'AuthController@clientLogin')->name('client.login');
+    Route::post('/login_check', 'AuthController@checkLogin')->name('login.check');
+    //logout client
+    Route::get('/logout_client', 'AuthController@clientLogout')->name('client.logout');
+    //contact
+    Route::get('/contact-us', 'HomeController@contact')->name('contact');
+    Route::post('/contact-send',  'HomeController@contactSend')->name('contact.send');
+
+
 
 });
 

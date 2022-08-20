@@ -81,7 +81,7 @@
                                     </div>
                                     <a class="favourite">
                                         <i id="{{$post->id}}" onclick="toggleFavourite(this)" class="far fa-heart
-{{--                                        {{$post->is_favourite ? 'fas fa-heart' : 'far fa-heart'}}--}}
+                                        {{$post->is_favourite ? 'fas fa-heart' : 'far fa-heart'}}
                                             "></i>
                                     </a>
 

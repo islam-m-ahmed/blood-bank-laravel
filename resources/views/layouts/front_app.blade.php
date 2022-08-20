@@ -36,77 +36,96 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="language">
-                        <a href="{{asset("front/index-ltr.html")}}" class="en active">EN</a>
-                        <a href="{{asset("front/index.html")}}" class="ar inactive">عربى</a>
+                        <a href="#" class="en active">EN</a>
+                        <a href="#" class="ar inactive">عربى</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="social">
                         <div class="icons">
-                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="{{$settings->fb_link}}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="{{$settings->insta_link}}" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="{{$settings->tw_link}}" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://web.whatsapp.com/" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>
-
+           @guest('client-web')
                 <!-- not a member-->
                 <div class="col-lg-4">
                     <div class="info" dir="ltr">
                         <div class="phone">
                             <i class="fas fa-phone-alt"></i>
-                            <p>+966506954964</p>
+                            <p>{{$settings->phone}}</p>
                         </div>
                         <div class="e-mail">
                             <i class="far fa-envelope"></i>
-                            <p>name@name.com</p>
+                            <p>{{$settings->email}}</p>
                         </div>
                     </div>
+            @endguest
 
-                <!--I'm a member
+            @auth('client-web')
 
-                            <div class="member">
-                                <p class="welcome">مرحباً بك</p>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        احمد محمد
-                                        <i class="fas fa-chevron-down"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{asset("front/index-1.html")}}">
-                                            <i class="fas fa-home"></i>
-                                            الرئيسية
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="far fa-user"></i>
-                                            معلوماتى
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="far fa-bell"></i>
-                                            اعدادات الاشعارات
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="far fa-heart"></i>
-                                            المفضلة
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="far fa-comments"></i>
-                                            ابلاغ
-                                        </a>
-                                        <a class="dropdown-item" href="{{asset("front/contact-us.html")}}">
-                                            <i class="fas fa-phone-alt"></i>
-                                            تواصل معنا
-                                        </a>
-                                        <a class="dropdown-item" href="{{asset("front/index.html")}}">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                            تسجيل الخروج
-                                        </a>
-                                    </div>
+                <div class="member">
+                    <p class="welcome">welcome :</p>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{auth('client-web')->user()->name}}
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{route('home')}}">
+                                <i class="fas fa-home"></i>
+                                main page
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="far fa-comments"></i>
+                                rebort
+                            </a>
+                            <a class="dropdown-item" href="{{route('contact')}}">
+                                <i class="fas fa-phone-alt"></i>
+                               contact with us
+                            </a>
+                            <a class="dropdown-item" href="{{route('client.logout')}}">
+                                <i class="fas fa-sign-out-alt"></i>
+                                logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            @endauth
+
+                    @auth('web')
+
+                        <div class="member">
+                            <p class="welcome">welcome</p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{auth('web')->user()->name}}
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{{route('home')}}">
+                                        <i class="fas fa-home"></i>
+                                        main page
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('dashboard')}}">
+                                        <i class="far fa-user"></i>
+                                       dashboard
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('logout')}}">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        logout
+                                    </a>
                                 </div>
                             </div>
+                        </div>
 
-                            -->
+                    @endauth
+
+
 
                 </div>
             </div>
@@ -125,39 +144,40 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{asset("front/index-ltr.html")}}">home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{url('/')}}">home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">about us</a>
+                            <a class="nav-link" href="{{url('about_us')}}">about us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">articles</a>
+                            <a class="nav-link" href="{{url('/')}}">articles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{asset("front/donation-requests-ltr.html")}}">donation requests</a>
+                            <a class="nav-link" href="{{url('donation_requests')}}">donation requests</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{asset("front/who-are-us-ltr.html")}}">who are us</a>
+                            <a class="nav-link" href="{{url('about_us')}}">who are us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{asset("front/contact-us-ltr.html")}}">contact us</a>
+                            <a class="nav-link" href="{{url('contact-us')}}">contact us</a>
                         </li>
                     </ul>
-
+                    @guest('client-web')
                     <!--not a member-->
                     <div class="accounts">
-                        <a href="{{asset("front/signin-account-rtl.html")}}" class="signin">sign in</a>
-                        <a href="{{asset("front/create-account-ltr.html")}}" class="create">create new account</a>
+                        <a href="{{url('client_login')}}" class="signin">sign in</a>
+                        <a href="{{url('client_register')}}" class="create">create new account</a>
                     </div>
+                    @endguest
 
-                <!--I'm a member
+                    @auth('client-web')
+                    <a href="{{url('donation_requests')}}" class="donate">
+                        <img src="{{asset("front/imgs/transfusion.svg")}}">
+                        <p>donation blood</p>
+                    </a>
+                    @endauth
 
-                            <a href="#" class="donate">
-                                <img src="{{asset("front/imgs/transfusion.svg")}}">
-                                <p>طلب تبرع</p>
-                            </a>
 
-                            -->
 
                 </div>
             </div>
@@ -180,12 +200,12 @@
                 </div>
                 <div class="pages col-md-4">
                     <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action active" id="list-home-list" href="{{asset("front/index-ltr.html")}}" role="tab" aria-controls="home">Home</a>
-                        <a class="list-group-item list-group-item-action" id="list-profile-list" href="#" role="tab" aria-controls="profile">About us</a>
-                        <a class="list-group-item list-group-item-action" id="list-messages-list" href="#" role="tab" aria-controls="messages">Articles</a>
-                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="{{asset("front/donation-requests-ltr.html")}}" role="tab" aria-controls="settings">Donation requests</a>
-                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="{{asset("front/who-are-us-ltr.html")}}" role="tab" aria-controls="settings">Who are us</a>
-                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="{{asset("front/contact-us-ltr.html")}}" role="tab" aria-controls="settings">Contact us</a>
+                        <a class="list-group-item list-group-item-action active" id="list-home-list" href="{{url('/')}}" role="tab" aria-controls="home">Home</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" href="{{url('about_us')}}" role="tab" aria-controls="profile">About us</a>
+                        <a class="list-group-item list-group-item-action" id="list-messages-list" href="{{url('/')}}" role="tab" aria-controls="messages">Articles</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="{{url('donation_requests')}}" role="tab" aria-controls="settings">Donation requests</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="{{url('about_us')}}" role="tab" aria-controls="settings">Who are us</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="{{url('contact-us')}}" role="tab" aria-controls="settings">Contact us</a>
                     </div>
                 </div>
                 <div class="stores col-md-4">

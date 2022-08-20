@@ -10,6 +10,7 @@ class Post extends Model
     protected $table = 'posts';
     public $timestamps = true;
     protected $fillable = ['title','content','image','category_id'];
+    protected $appends = 'is_favourite';
 
     public function category()
     {
